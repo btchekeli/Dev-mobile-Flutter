@@ -1,0 +1,85 @@
+import "package:flutter/material.dart";
+
+void main() {
+  runApp(const MonAppli());
+}
+
+class MonAppli extends StatelessWidget {
+  const MonAppli({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: "Ma première application",
+      debugShowCheckedModeBanner: false,
+      home: PageAccueil(),
+    );
+  }
+}
+
+class PageAccueil extends StatelessWidget {
+  const PageAccueil({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Magazine Infos",
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.red,
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(Icons.menu, color: Colors.white),
+          tooltip: "Menu",
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("Je n'ai pas encore ajouté le drawer"),
+                behavior: SnackBarBehavior.floating,
+                duration: Duration(milliseconds: 1000),
+              ),
+            );
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search, color: Colors.white),
+            tooltip: "Effectuer une recherche",
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                    "Effectuer une recherche prochainement disponible",
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+      body: const Center(
+        child: //Text("Bonjour Brunel, voici votre première application !"),
+        Image(
+          image: AssetImage("assets/images/news.jpg"),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        tooltip: "Retourner à la page d'accueil",
+        onPressed: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Tu as cliqué dessus!"),
+              duration: Duration(milliseconds: 2000),
+              behavior: SnackBarBehavior.floating,
+            ),
+          );
+        },
+        shape: const CircleBorder(),
+        backgroundColor: Colors.red,
+        child: const Text("Click", style: TextStyle(color: Colors.white)),
+      ),
+    );
+  }
+}
